@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SuberMarket
 {
-    internal class Branch
+    public class Branch
     {
         public static int BranID = 1;
         public int ID;
@@ -28,7 +28,6 @@ namespace SuberMarket
         public void AddEmp(Employee emp)
         {
             Employees[IdxEmp++] = emp.Clone();
-            SetDataInFiles();
         }
 
         public int SeachProdInBrach(Product prod)
@@ -41,8 +40,9 @@ namespace SuberMarket
             return -1;
         }
 
-        public void AddProd(Product prod) {
-            int idx= SeachProdInBrach(prod);
+        public void AddProd(Product prod)
+        {
+            int idx = SeachProdInBrach(prod);
             if (idx >= 0)
             {
                 Products[idx].Amount += prod.Amount;
@@ -50,29 +50,6 @@ namespace SuberMarket
             else
             {
                 Products[IdxProd++] = prod.Clone();
-            }
-            SetDataInFiles();
-        }
-
-        public void SetDataInFiles()
-        {
-            string path = $"{Program.MyFiles}Employees.txt";
-            File.WriteAllText(path, "");
-            for (int i = 0; i < IdxEmp; i++)
-            {
-                using (StreamWriter writer = new StreamWriter(path, true))
-                {
-                    writer.WriteLine(Employees[i].GetData());
-                }
-            }
-            path = $"{Program.MyFiles}Products.txt";
-            File.WriteAllText(path, "");
-            for (int i = 0; i < IdxProd; i++)
-            {
-                using (StreamWriter writer = new StreamWriter(path,true))
-                {
-                    writer.WriteLine(Products[i].GetData());
-                }
             }
         }
 

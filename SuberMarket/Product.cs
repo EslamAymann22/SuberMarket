@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SuberMarket
 {
-    class Product
+    public class Product
     {
 
 

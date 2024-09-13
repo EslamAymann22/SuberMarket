@@ -16,7 +16,7 @@ namespace SuberMarket
         ProduceClerk=8
     }
 
-    class Employee
+    public  class Employee
     {
 
 

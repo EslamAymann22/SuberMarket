@@ -12,38 +12,9 @@ namespace SuberMarket
 
     internal class Program
     {
-        class DataBaseFile
-        {
-            public static void SetDataInFileEmployee()
-            {
-
-            }
-            public static void SetDataInFileProduct()
-            {
-
-            }
-            public static void SetDataInFileAll()
-            {
-                SetDataInFileEmployee();
-                SetDataInFileProduct();
-            }
-            public static void GetDataInFileEmployee()
-            {
-
-            }
-            public static void GetDataInFileProduct()
-            {
-
-            }
-            public static void GetDataInFileAll()
-            {
-                GetDataInFileEmployee();
-                GetDataInFileProduct();
-            }
-        }
+      
 
 
-        public static string MyFiles = "C:\\Users\\hhhh\\source\\repos\\SuberMarket\\SuberMarket\\MyFiles\\";
 
         static void Main(string[] args)
         {
@@ -66,18 +37,19 @@ namespace SuberMarket
             //x.ChangePriceWithpercentage(-50);  
             //WriteLine(x.ToString());
 
-            Branch x = new Branch("Sohag");
+            //Branch x = new Branch("Sohag");
 
-            x.AddProd(new Product("Al3arosa", 15, 300));
-            x.AddProd(new Product("lepton", 50, 900));
-            x.AddProd(new Product("Al3arosa", 15, 300));
-            
-            x.ShowAllProducts();
+            //x.AddProd(new Product("Al3arosa", 15, 300));
+            //x.AddProd(new Product("lepton", 50, 900));
+            //x.AddProd(new Product("Al3arosa", 15, 300));
 
+            //x.ShowAllProducts();
+
+            Market M = new Market("Eslam");
 
             return;
             // to read from file
-            string path = $"{MyFiles}Employees.txt";
+            string path = $"{DataBaseFile.MyFiles}Employees.txt";
             string[] lines = File.ReadAllLines(path);
 
             foreach (string line in lines)
