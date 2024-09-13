@@ -18,7 +18,7 @@ namespace SuberMarket
 
         public static int ProdID = 1;
 
-        public Product() : this("N\\A", 0, 0) { }
+        public Product() : this("N/A", 0, 0) { }
         public Product(string Name, double Price, int Amount)
         {
             ID = ProdID++;

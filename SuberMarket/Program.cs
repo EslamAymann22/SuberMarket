@@ -15,6 +15,13 @@ namespace SuberMarket
       
 
 
+        class test
+        {
+            test()
+            {
+                Console.WriteLine("Eslam");
+            }
+        }
 
         static void Main(string[] args)
         {
@@ -47,7 +54,17 @@ namespace SuberMarket
 
             Market M = new Market("Eslam");
 
+            M.AddBranch(new Branch("Sohag"));
+            M.Branchs[0].AddProd(new Product("Al3arosa", 15, 600));
+            M.Branchs[0].AddProd(new Product("Lepton", 30, 900));
             return;
+            M.AddBranch(new Branch("Assiut"));
+
+
+
+
+
+
             // to read from file
             string path = $"{DataBaseFile.MyFiles}Employees.txt";
             string[] lines = File.ReadAllLines(path);

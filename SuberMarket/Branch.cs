@@ -12,12 +12,18 @@ namespace SuberMarket
         public static int BranID = 1;
         public int ID;
         public string Name;
-        public Product[] Products=new Product[50];
-        public Employee[] Employees=new Employee[50];
+        public Product[] Products=new Product[90];
+        public Employee[] Employees=new Employee[90];
         int IdxEmp = 0, IdxProd = 0;
         
 
-        public Branch():this ("N\\A"){ }
+        public Branch():this ("N/A"){
+            for (int i = 0; i < 50; i++)
+            {
+                Products[i] = new Product();
+                Employees[i] = new Employee();
+            }
+        }
 
         public Branch(string Name)
         {
@@ -29,6 +35,8 @@ namespace SuberMarket
         {
             Employees[IdxEmp++] = emp.Clone();
         }
+
+        
 
         public int SeachProdInBrach(Product prod)
         {
@@ -49,7 +57,7 @@ namespace SuberMarket
             }
             else
             {
-                Products[IdxProd++] = prod.Clone();
+                Products[IdxProd++] = prod;
             }
         }
 
@@ -67,5 +75,18 @@ namespace SuberMarket
                 System.Console.WriteLine(Employees[i].ToString());
             }
         }
+
+        public Branch Clone()
+        {
+            Branch ret = (Branch)this.MemberwiseClone();
+            for(int i = 0; i < 50; ++i)
+            {
+                ret.Employees[i]= this.Employees[i].Clone();
+                ret.Products[i]= this.Products[i].Clone();
+            }
+
+            return ret;
+        }
+
     }
 }
