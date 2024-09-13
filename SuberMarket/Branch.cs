@@ -13,7 +13,7 @@ namespace SuberMarket
         public int ID;
         public string Name;
         public Product[] Products=new Product[50];
-        public Employee[] employees=new Employee[50];
+        public Employee[] Employees=new Employee[50];
         int IdxEmp = 0, IdxProd = 0;
         
 
@@ -27,7 +27,8 @@ namespace SuberMarket
 
         public void AddEmp(Employee emp)
         {
-            employees[IdxEmp++] = emp.Clone();
+            Employees[IdxEmp++] = emp.Clone();
+            SetDataInFiles();
         }
 
         public int SeachProdInBrach(Product prod)
@@ -35,7 +36,7 @@ namespace SuberMarket
            
             for (int i = 0; i < IdxProd; i++)
             {
-                if (prod.ID == Products[i].ID) return i;
+                if (prod.Name == Products[i].Name) return i;
             }
             return -1;
         }
@@ -50,15 +51,44 @@ namespace SuberMarket
             {
                 Products[IdxProd++] = prod.Clone();
             }
+            SetDataInFiles();
         }
 
-        public void SetData()
+        public void SetDataInFiles()
         {
-           for(int i = 0; i < IdxEmp; i++)
+            string path = $"{Program.MyFiles}Employees.txt";
+            File.WriteAllText(path, "");
+            for (int i = 0; i < IdxEmp; i++)
             {
-
+                using (StreamWriter writer = new StreamWriter(path, true))
+                {
+                    writer.WriteLine(Employees[i].GetData());
+                }
+            }
+            path = $"{Program.MyFiles}Products.txt";
+            File.WriteAllText(path, "");
+            for (int i = 0; i < IdxProd; i++)
+            {
+                using (StreamWriter writer = new StreamWriter(path,true))
+                {
+                    writer.WriteLine(Products[i].GetData());
+                }
             }
         }
 
+        public void ShowAllProducts()
+        {
+            for(int i = 0;i < IdxProd; i++)
+            {
+                System.Console.WriteLine(Products[i].ToString());
+            }
+        }
+        public void ShowAllEmployees()
+        {
+            for (int i = 0; i < IdxEmp; i++)
+            {
+                System.Console.WriteLine(Employees[i].ToString());
+            }
+        }
     }
 }
