@@ -19,6 +19,8 @@ namespace SuberMarket
     class Employee
     {
 
+
+        public static int EmpID = 1;
         public string Name { get; set; }
         public double Salary { get; set; }
         public Role role { get; set; }
@@ -36,6 +38,10 @@ namespace SuberMarket
         public override string ToString()
         {
             return $"Name is {Name} , Salary = {Salary}$ , ID = {ID} , Role is {role}";
+        }
+        public string GetData()
+        {
+            return $"{ID},{Name},{Salary},{(int)role}";
         }
         public Employee Clone()
         {

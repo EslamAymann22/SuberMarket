@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +31,10 @@ namespace SuberMarket
         {
             return $"ID = {ID} , Name = {Name} , Amount = {Amount} , Price {Price}$";
         }
-
+        public string GetData()
+        {
+            return $"{ID},{Name},{Price},{Amount}";
+        }
         public static bool SameProd(Product p1,Product p2)
         {
             return (p1.ID == p2.ID);
@@ -82,6 +86,8 @@ namespace SuberMarket
 
 
         }
+
+        public Product Clone() { return (Product)this.MemberwiseClone(); }
 
     }
 }
