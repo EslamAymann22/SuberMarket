@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,10 +26,10 @@ namespace SuberMarket
 
                 for (int i = 0; i < 50; ++i)
                 {
-                    if (MyMarket.Branchs[i].Name == "N/A") break;
+                    if (MyMarket.Branchs[i] == null) continue;
                     for (int j = 0; j < 50; ++j)
                     {
-                        if (MyMarket.Branchs[i].Employees[j].Name == "N/A") break;
+                        if (MyMarket.Branchs[i].Employees[j] == null) continue;
 
                         writer.WriteLine($"{i},{MyMarket.Branchs[i].Employees[j].GetData()}");
 
@@ -47,25 +48,38 @@ namespace SuberMarket
 
                 for (int i = 0; i < 50; ++i)
                 {
-                    WriteLine(i);
-                    if (MyMarket.Branchs[i].Name == "N/A") break;
+       
+                    if (MyMarket.Branchs[i] == null) continue;
                     for (int j = 0; j < 50; ++j)
                     {
-                        if (MyMarket.Branchs[i].Products[j].Name == "N/A") break;
+                        if (MyMarket.Branchs[i].Products[j] == null) continue;
 
                         writer.WriteLine($"{i},{MyMarket.Branchs[i].Products[j].GetData()}");
 
                     }
-
-
-
                 }
             }
         }
-        public static void SetDataInFileAll(Market MyMArket)
+        public static void SetDataInFileBraName(Market MyMarket)
         {
-            SetDataInFileEmployee(MyMArket);
-            SetDataInFileProduct(MyMArket);
+            string path = $"{MyFiles}BraName.txt";
+
+            File.WriteAllText(path, ""); // to clear file data
+
+            using (StreamWriter writer = new StreamWriter(path))
+            {
+
+                for (int i = 0; i < MyMarket.IdxBranch; ++i)
+                {
+                    writer.WriteLine(MyMarket.BraName[i]);   
+                }
+            }
+        }
+        public static void SetDataInFileAll(Market MyMarket)
+        {
+            SetDataInFileProduct(MyMarket);
+            SetDataInFileBraName(MyMarket);
+            SetDataInFileEmployee(MyMarket);
         }
         public static void GetDataInFileEmployee(Market MyMarket)
         {
@@ -81,17 +95,20 @@ namespace SuberMarket
                 string EmpName=s[2];
                 double Salary=double.Parse(s[3]);
                 int Rolee=int.Parse(s[4]);
-                MyMarket.Branchs[IdBranch].Employees[IdEmp].ID = IdEmp;
-                MyMarket.Branchs[IdBranch].Employees[IdEmp].Name = EmpName;
-                MyMarket.Branchs[IdBranch].Employees[IdEmp].Salary = Salary;
-                MyMarket.Branchs[IdBranch].Employees[IdEmp].role = (Role)Rolee;
+
+                if (MyMarket.Branchs[IdBranch] == null)
+                    MyMarket.Branchs[IdBranch] = new Branch(MyMarket.BraName[IdBranch]);
+
+                MyMarket.
+                    Branchs[IdBranch].
+                    Employees[MyMarket.Branchs[IdBranch].IdxEmp++] = new Employee(EmpName, Salary, Rolee);
             }
         }
         public static void GetDataInFileProduct(Market MyMarket)
         {
             string path = $"{MyFiles}Products.txt";
             string[] lines = File.ReadAllLines(path);
-
+            //int ProdID = 1;
             foreach (string line in lines)
             {
                 string[] s = line.Split(',');
@@ -100,40 +117,54 @@ namespace SuberMarket
                 string ProdName = s[2];
                 double Price = double.Parse(s[3]);
                 int Amount = int.Parse(s[4]);
-    
-                MyMarket.Branchs[IdBranch].Products[IdProd].ID = IdProd;
-                MyMarket.Branchs[IdBranch].Products[IdProd].Name = ProdName;
-                MyMarket.Branchs[IdBranch].Products[IdProd].Price = Price;
-                MyMarket.Branchs[IdBranch].Products[IdProd].Amount = Amount;
+                //if (MyMarket.Branchs[IdBranch] == null)
+                    //MyMarket.Branchs[IdBranch] = new Branch(MyMarket.BraName[IdBranch]);
+
+                MyMarket.
+                    Branchs[IdBranch].
+                    Products[MyMarket.Branchs[IdBranch].IdxProd++]
+                    = new Product(ProdName, Price, Amount);
+            }
+        }
+        public static void GetDataInFileBraName(Market MyMarket)
+        {
+            string path = $"{MyFiles}BraName.txt";
+            string[] lines = File.ReadAllLines(path);
+            int id = 0;
+            foreach (string line in lines)
+            {
+                MyMarket.BraName[id] = line;
+                MyMarket.Branchs[id]=new Branch(MyMarket.BraName[id]);
+                id++;
+              //  WriteLine(MyMarket.BraName[id - 1]);
             }
         }
         public static void GetDataInFileAll(Market MyMarket)
         {
+            GetDataInFileBraName(MyMarket);
             GetDataInFileProduct(MyMarket);
             GetDataInFileEmployee(MyMarket);
+            return;
         }
     }
     public class Market
     {
 
-        int IdxBranch = 0;
-        public Branch[] Branchs=new Branch[90];
+        public int IdxBranch = 0;
+        public Branch[] Branchs=new Branch[50];
+        public string[] BraName = new string[50];
         public string Name;
         public Market(string Name) 
         {
-            for (int i = 0; i < 50; i++) { 
-                Branchs[i] = new Branch();
-            }
             this.Name = Name;
-            //WriteLine("STaaaaaaaaaaaaaaaaaaart!!!!!!!!!!");///////////////////////////////de
-            DataBaseFile.GetDataInFileAll(this);
-            //WriteLine("EnDDDDDDDDDDDDDDDDDDDDd~~~~~~~~~~");///////////////////////////////de
+            //DataBaseFile.GetDataInFileAll(this);
         }
 
 
         public void AddBranch(Branch branch)
         {
-            Branchs[IdxBranch++] = branch;
+            Branchs[IdxBranch] = branch.Clone();
+            BraName[IdxBranch++] = branch.Name;
         }
 
 

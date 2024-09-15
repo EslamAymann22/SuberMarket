@@ -11,14 +11,14 @@ namespace SuberMarket
     {
 
 
-        public int ID { get; set; }
+        public int ID { get; }
         public string Name { get; set; }
         public double Price { get; set; }
         public int Amount { get; set; }
 
         public static int ProdID = 1;
 
-        public Product() : this("N/A", 0, 0) { }
+       
         public Product(string Name, double Price, int Amount)
         {
             ID = ProdID++;

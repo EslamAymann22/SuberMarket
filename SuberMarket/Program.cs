@@ -52,13 +52,31 @@ namespace SuberMarket
 
             //x.ShowAllProducts();
 
+
+
+
+
+            return;
+
+
+
             Market M = new Market("Eslam");
 
             M.AddBranch(new Branch("Sohag"));
-            M.Branchs[0].AddProd(new Product("Al3arosa", 15, 600));
-            M.Branchs[0].AddProd(new Product("Lepton", 30, 900));
-            return;
             M.AddBranch(new Branch("Assiut"));
+
+            M.Branchs[0].AddProd("Al3arosa", 30, 600);
+            M.Branchs[0].AddProd("Lepton", 50, 900);
+            M.Branchs[0].AddProd("Al3arosa", 30, 600);
+            M.Branchs[1].AddProd("Lepton", 50, 900);
+            M.Branchs[0].AddEmp(new Employee("Eslam", 12000, (int)(Role.Cashier | Role.Security)));
+            M.Branchs[0].AddEmp(new Employee("Mohamed", 8000, (int)(Role.Security)));
+            M.Branchs[0].AddEmp(new Employee("Ali", 9000, (int)(Role.Cashier|Role.Security)));
+            M.Branchs[0].ShowAllProducts();
+            M.Branchs[1].ShowAllProducts();
+            M.Branchs[0].ShowAllEmployees();
+           WriteLine (M.Branchs[0].IdxEmp);
+
 
 
 

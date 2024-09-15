@@ -24,16 +24,14 @@ namespace SuberMarket
         public string Name { get; set; }
         public double Salary { get; set; }
         public Role role { get; set; }
-        public int ID { get; set; }
+        public int ID { get; }
 
-
-        public Employee() : this("N/A", 0, new Role(), -1) { }
-        public Employee(string Name, double Salary, Role role, int ID)
+        public Employee(string Name, double Salary, int role)
         {
             this.Name = Name;
             this.Salary = Salary;
-            this.role = role;
-            this.ID = ID;
+            this.role = (Role)role;
+            this.ID = EmpID++;
         }
         public override string ToString()
         {
@@ -60,14 +58,14 @@ namespace SuberMarket
             Employee y = (Employee)x;
             return (y.ID == this.ID);
         }
-        public static bool operator ==(Employee This, Employee y)
-        {
-            return This.Equals(y);
-        }
-        public static bool operator !=(Employee This, Employee y)
-        {
-            return !This.Equals(y);
-        }
+        //public static bool operator ==(Employee This, Employee y)
+        //{
+        //    return This.Equals(y);
+        //}
+        //public static bool operator !=(Employee This, Employee y)
+        //{
+        //    return This.Equals(y);
+        //}
         public void AddBonus(int Bonus)
         {
             Salary+= Bonus;
