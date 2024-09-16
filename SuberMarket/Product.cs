@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Console;
 
 namespace SuberMarket
 {
@@ -53,7 +54,9 @@ namespace SuberMarket
 
             }
             catch {
+                ForegroundColor = ConsoleColor.Red;
                 System.Console.WriteLine(Msg);
+                ResetColor();
             }
         
 
@@ -71,6 +74,8 @@ namespace SuberMarket
             }
             catch
             {
+                ForegroundColor = ConsoleColor.Red;
+                ResetColor();
                 System.Console.WriteLine(Msg);
             }
 

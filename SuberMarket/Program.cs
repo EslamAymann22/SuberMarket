@@ -104,5 +104,21 @@ namespace SuberMarket
      
 
         }
+
+        static void Main3()
+        {
+            // تحديد لون النص
+            Console.ForegroundColor = ConsoleColor.Red;
+
+            // تحديد الموقع (العمود 0، الصف 5)
+            //Console.SetCursorPosition(0, 5);
+
+            // كتابة النص
+            Console.WriteLine("This is red text on line 6");
+
+            // إعادة اللون إلى اللون الافتراضي
+            Console.ResetColor();
+        }
+
     }
 }

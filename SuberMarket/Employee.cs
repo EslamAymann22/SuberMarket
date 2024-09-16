@@ -66,7 +66,7 @@ namespace SuberMarket
         //{
         //    return This.Equals(y);
         //}
-        public void AddBonus(int Bonus)
+        public void AddBonus(double Bonus)
         {
             Salary+= Bonus;
         }
