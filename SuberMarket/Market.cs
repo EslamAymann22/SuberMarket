@@ -26,12 +26,12 @@ namespace SuberMarket
 
                 for (int i = 0; i < 50; ++i)
                 {
-                    if (MyMarket.Branchs[i] == null) continue;
+                    if (MyMarket.Branches[i] == null) continue;
                     for (int j = 0; j < 50; ++j)
                     {
-                        if (MyMarket.Branchs[i].Employees[j] == null) continue;
+                        if (MyMarket.Branches[i].Employees[j] == null) continue;
 
-                        writer.WriteLine($"{i},{MyMarket.Branchs[i].Employees[j].GetData()}");
+                        writer.WriteLine($"{i},{MyMarket.Branches[i].Employees[j].GetData()}");
 
                     }
                 }
@@ -49,12 +49,12 @@ namespace SuberMarket
                 for (int i = 0; i < 50; ++i)
                 {
        
-                    if (MyMarket.Branchs[i] == null) continue;
+                    if (MyMarket.Branches[i] == null) continue;
                     for (int j = 0; j < 50; ++j)
                     {
-                        if (MyMarket.Branchs[i].Products[j] == null) continue;
+                        if (MyMarket.Branches[i].Products[j] == null) continue;
 
-                        writer.WriteLine($"{i},{MyMarket.Branchs[i].Products[j].GetData()}");
+                        writer.WriteLine($"{i},{MyMarket.Branches[i].Products[j].GetData()}");
 
                     }
                 }
@@ -96,12 +96,12 @@ namespace SuberMarket
                 double Salary=double.Parse(s[3]);
                 int Rolee=int.Parse(s[4]);
 
-                if (MyMarket.Branchs[IdBranch] == null)
-                    MyMarket.Branchs[IdBranch] = new Branch(MyMarket.BraName[IdBranch]);
+                if (MyMarket.Branches[IdBranch] == null)
+                    MyMarket.Branches[IdBranch] = new Branch(MyMarket.BraName[IdBranch]);
 
                 MyMarket.
-                    Branchs[IdBranch].
-                    Employees[MyMarket.Branchs[IdBranch].IdxEmp++] = new Employee(EmpName, Salary, Rolee);
+                    Branches[IdBranch].
+                    Employees[MyMarket.Branches[IdBranch].IdxEmp++] = new Employee(EmpName, Salary, Rolee);
             }
         }
         public static void GetDataInFileProduct(Market MyMarket)
@@ -121,8 +121,8 @@ namespace SuberMarket
                     //MyMarket.Branchs[IdBranch] = new Branch(MyMarket.BraName[IdBranch]);
 
                 MyMarket.
-                    Branchs[IdBranch].
-                    Products[MyMarket.Branchs[IdBranch].IdxProd++]
+                    Branches[IdBranch].
+                    Products[MyMarket.Branches[IdBranch].IdxProd++]
                     = new Product(ProdName, Price, Amount);
             }
         }
@@ -134,7 +134,7 @@ namespace SuberMarket
             foreach (string line in lines)
             {
                 MyMarket.BraName[id] = line;
-                MyMarket.Branchs[id]=new Branch(MyMarket.BraName[id]);
+                MyMarket.Branches[id]=new Branch(MyMarket.BraName[id]);
                 id++;
               //  WriteLine(MyMarket.BraName[id - 1]);
             }
@@ -151,7 +151,7 @@ namespace SuberMarket
     {
 
         public int IdxBranch = 0;
-        public Branch[] Branchs=new Branch[50];
+        public Branch[] Branches=new Branch[50];
         public string[] BraName = new string[50];
         public string Name;
         public Market(string Name) 
@@ -163,10 +163,17 @@ namespace SuberMarket
 
         public void AddBranch(Branch branch)
         {
-            Branchs[IdxBranch] = branch.Clone();
+            Branches[IdxBranch] = branch.Clone();
             BraName[IdxBranch++] = branch.Name;
         }
 
+        public void ShowAllBranches()
+        {
+            for(int i = 0; i < IdxBranch; i++)
+            {
+                WriteLine(Branches[i].ToString());
+            }
+        }
 
         ~Market()
         {

@@ -83,6 +83,10 @@ namespace SuberMarket
             return ret;
         }
 
+        public override string ToString()
+        {
+            return $"ID = {ID} , Name = {Name}";
+        }
 
         public int NumberOfEmployees() { return IdxEmp; }
         public int NumberOfProducts() { return IdxProd; }
