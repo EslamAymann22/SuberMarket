@@ -16,6 +16,27 @@ namespace SuberMarket
         static void Main(string[] args)
         {
 
+            Market EslamMarket = new Market("");
+
+            RunProg.Run(EslamMarket);
+
+
+
+        }
+
+        static void Main3()
+        {
+            // تحديد لون النص
+            Console.ForegroundColor = ConsoleColor.Red;
+
+            // تحديد الموقع (العمود 0، الصف 5)
+            //Console.SetCursorPosition(0, 5);
+
+            // كتابة النص
+            Console.WriteLine("This is red text on line 6");
+
+            // إعادة اللون إلى اللون الافتراضي
+            Console.ResetColor();
 
 
 
@@ -67,11 +88,11 @@ namespace SuberMarket
             M.Branches[1].AddProd("Lepton", 50, 900);
             M.Branches[0].AddEmp(new Employee("Eslam", 12000, (int)(Role.Cashier | Role.Security)));
             M.Branches[0].AddEmp(new Employee("Mohamed", 8000, (int)(Role.Security)));
-            M.Branches[0].AddEmp(new Employee("Ali", 9000, (int)(Role.Cashier|Role.Security)));
+            M.Branches[0].AddEmp(new Employee("Ali", 9000, (int)(Role.Cashier | Role.Security)));
             M.Branches[0].ShowAllProducts();
             M.Branches[1].ShowAllProducts();
             M.Branches[0].ShowAllEmployees();
-           WriteLine (M.Branches[0].IdxEmp);
+            WriteLine(M.Branches[0].IdxEmp);
 
 
 
@@ -101,23 +122,7 @@ namespace SuberMarket
                 writer.WriteLine("This will overwrite the file content.");
             }
 
-     
 
-        }
-
-        static void Main3()
-        {
-            // تحديد لون النص
-            Console.ForegroundColor = ConsoleColor.Red;
-
-            // تحديد الموقع (العمود 0، الصف 5)
-            //Console.SetCursorPosition(0, 5);
-
-            // كتابة النص
-            Console.WriteLine("This is red text on line 6");
-
-            // إعادة اللون إلى اللون الافتراضي
-            Console.ResetColor();
         }
 
     }
