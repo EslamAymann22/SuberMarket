@@ -71,7 +71,7 @@ namespace SuberMarket
 
                 for (int i = 0; i < MyMarket.IdxBranch; ++i)
                 {
-                    writer.WriteLine(MyMarket.BraName[i]);   
+                    writer.WriteLine(MyMarket.BraName[i]);
                 }
             }
         }
@@ -88,7 +88,6 @@ namespace SuberMarket
 
             foreach (string line in lines)
             {
-                Console.WriteLine(line);
                 string[] s = line.Split(',');
                 int IdBranch=int.Parse(s[0]);
                 int IdEmp=int.Parse(s[1]);
@@ -96,19 +95,16 @@ namespace SuberMarket
                 double Salary=double.Parse(s[3]);
                 int Rolee=int.Parse(s[4]);
 
-                if (MyMarket.Branches[IdBranch] == null)
-                    MyMarket.Branches[IdBranch] = new Branch(MyMarket.BraName[IdBranch]);
-
                 MyMarket.
                     Branches[IdBranch].
-                    Employees[MyMarket.Branches[IdBranch].IdxEmp++] = new Employee(EmpName, Salary, Rolee);
+                    Employees[MyMarket.Branches[IdBranch].IdxEmp] = new Employee(EmpName, Salary, Rolee);
+                MyMarket.Branches[IdBranch].IdxEmp++;
             }
         }
         public static void GetDataInFileProduct(Market MyMarket)
         {
             string path = $"{MyFiles}Products.txt";
             string[] lines = File.ReadAllLines(path);
-            //int ProdID = 1;
             foreach (string line in lines)
             {
                 string[] s = line.Split(',');
@@ -117,26 +113,23 @@ namespace SuberMarket
                 string ProdName = s[2];
                 double Price = double.Parse(s[3]);
                 int Amount = int.Parse(s[4]);
-                //if (MyMarket.Branchs[IdBranch] == null)
-                    //MyMarket.Branchs[IdBranch] = new Branch(MyMarket.BraName[IdBranch]);
 
                 MyMarket.
                     Branches[IdBranch].
-                    Products[MyMarket.Branches[IdBranch].IdxProd++]
+                    Products[MyMarket.Branches[IdBranch].IdxProd]
                     = new Product(ProdName, Price, Amount);
+                MyMarket.Branches[IdBranch].IdxProd++;
             }
         }
         public static void GetDataInFileBraName(Market MyMarket)
         {
             string path = $"{MyFiles}BraName.txt";
             string[] lines = File.ReadAllLines(path);
-            int id = 0;
             foreach (string line in lines)
             {
-                MyMarket.BraName[id] = line;
-                MyMarket.Branches[id]=new Branch(MyMarket.BraName[id]);
-                id++;
-              //  WriteLine(MyMarket.BraName[id - 1]);
+                MyMarket.BraName[MyMarket.IdxBranch] = line;
+                MyMarket.Branches[MyMarket.IdxBranch] =new Branch(line);
+                MyMarket.IdxBranch++;
             }
         }
         public static void GetDataInFileAll(Market MyMarket)
@@ -157,7 +150,7 @@ namespace SuberMarket
         public Market(string Name) 
         {
             this.Name = Name;
-            //DataBaseFile.GetDataInFileAll(this);
+            DataBaseFile.GetDataInFileAll(this);
         }
 
 

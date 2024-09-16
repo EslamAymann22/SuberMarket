@@ -77,7 +77,7 @@ namespace SuberMarket
                             try { int id = int.Parse(ReadLine());
                                 if (id <= MyMarket.NumberOfBranches() && id > 0)
                                 {
-                                    BrancheConfig(MyMarket.Branches[id - 1]);
+                                    BranchConfig(MyMarket.Branches[id - 1]);
                                 }
                                 else if (id == -1) break;
                                 else continue;
@@ -138,7 +138,7 @@ namespace SuberMarket
             }
             return RetRole;
         }
-        public static void BrancheConfig(Branch MyBranch)
+        public static void BranchConfig(Branch MyBranch)
         {
             void EditBranchName()
             {
@@ -171,6 +171,15 @@ namespace SuberMarket
                 WriteLine(successMSG);
                 ResetColor();
             }
+            int Existed(string Name,double Price)
+            {
+                for(int i = 0; i < MyBranch.IdxProd; ++i)
+                {
+                    if (MyBranch.Products[i].Name == Name &&
+                        MyBranch.Products[i].Price == Price) return i;
+                }
+                return -1;
+            }
             void AddProduct()
             {
                 try
@@ -186,9 +195,16 @@ namespace SuberMarket
                     WriteLine("Enter product amount !");
                     ResetColor();
                     PAmount = int.Parse(ReadLine());
-
-                    Product NewProd = new Product(PName, PPrice, PAmount);
-                    MyBranch.Products[MyBranch.IdxProd++] = NewProd;
+                    int IDX = Existed(PName, PPrice);
+                    if (IDX==-1)
+                    {
+                        Product NewProd = new Product(PName, PPrice, PAmount);
+                        MyBranch.Products[MyBranch.IdxProd++] = NewProd;
+                    }
+                    else
+                    {
+                        MyBranch.Products[IDX].Amount += PAmount;
+                    }
                     ForegroundColor = ConsoleColor.Green;
                     WriteLine(successMSG);
                     ResetColor();
