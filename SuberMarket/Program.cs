@@ -13,19 +13,14 @@ namespace SuberMarket
     internal class Program
     {
       
-
-
-
-        class test
-        {
-            test()
-            {
-                Console.WriteLine("Eslam");
-            }
-        }
-
         static void Main(string[] args)
         {
+
+
+
+
+
+
 
             //Employee x = new Employee("Eslam",15000,(Role)(Role.Cashier|Role.Security),1);
 
@@ -57,9 +52,9 @@ namespace SuberMarket
             Market m = new Market("");
 
             RunProg.Run(m);
+
+
             return;
-
-
 
             Market M = new Market("Eslam");
 

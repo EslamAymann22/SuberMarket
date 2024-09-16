@@ -164,9 +164,13 @@ namespace SuberMarket
         public void AddBranch(Branch branch)
         {
             Branches[IdxBranch] = branch.Clone();
-            BraName[IdxBranch++] = branch.Name;
+            BraName[IdxBranch] = branch.Name;
+            IdxBranch++;
         }
-
+        public int NumberOfBranches()
+        {
+            return IdxBranch;
+        }
         public void ShowAllBranches()
         {
             for(int i = 0; i < IdxBranch; i++)
