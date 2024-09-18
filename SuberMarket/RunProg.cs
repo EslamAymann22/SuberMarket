@@ -15,7 +15,7 @@ namespace SuberMarket
 
     public static class RunProg
     {
-        public static string CatchMSG = "Your input was wrong !!!";
+        public static string CatchMSG = "Your input is wrong :(";
         public static string successMSG = "The process was completed successfully :) ";
 
         public static void Run(Market MyMarket)
@@ -158,7 +158,9 @@ namespace SuberMarket
                 int ERole = 0;
                 ForegroundColor = ConsoleColor.DarkCyan;
                 WriteLine("Enter employee name !");
+                ResetColor();
                 EName = ReadLine();
+                ForegroundColor = ConsoleColor.DarkCyan;
                 WriteLine("Enter employee salary !");
                 ResetColor();
                 ESalary = double.Parse(ReadLine());
@@ -189,9 +191,13 @@ namespace SuberMarket
                     int PAmount;
                     ForegroundColor = ConsoleColor.DarkCyan;
                     WriteLine("Enter product name !");
+                    ResetColor();
                     PName = ReadLine();
+                    ForegroundColor = ConsoleColor.DarkCyan;
                     WriteLine("Enter product price !");
+                    ResetColor();
                     PPrice = double.Parse(ReadLine());
+                    ForegroundColor = ConsoleColor.DarkCyan;
                     WriteLine("Enter product amount !");
                     ResetColor();
                     PAmount = int.Parse(ReadLine());

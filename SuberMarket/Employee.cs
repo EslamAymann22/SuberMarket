@@ -10,6 +10,7 @@ namespace SuberMarket
     [Flags]
     public enum Role
     {
+        None = 0,
         Cashier = 1,
         Cleaner=2,
         Security=4,
