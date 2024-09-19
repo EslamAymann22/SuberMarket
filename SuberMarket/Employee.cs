@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Console;
 
-namespace SuberMarket
+namespace SuperMarket
 {
     [Flags]
     public enum Role
@@ -59,14 +59,14 @@ namespace SuberMarket
             Employee y = (Employee)x;
             return (y.ID == this.ID);
         }
-        //public static bool operator ==(Employee This, Employee y)
-        //{
-        //    return This.Equals(y);
-        //}
-        //public static bool operator !=(Employee This, Employee y)
-        //{
-        //    return This.Equals(y);
-        //}
+        public static bool operator ==(Employee This, Employee y)
+        {
+            return This.Equals(y);
+        }
+        public static bool operator !=(Employee This, Employee y)
+        {
+            return This.Equals(y);
+        }
         public void AddBonus(double Bonus)
         {
             Salary+= Bonus;

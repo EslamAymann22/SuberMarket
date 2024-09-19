@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using static System.Console;
-namespace SuberMarket
+namespace SuperMarket
 {
 
     public static class RunProg

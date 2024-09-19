@@ -5,16 +5,16 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static SuberMarket.Program;
+using static SuperMarket.Program;
 using static System.Console;
 
 
-namespace SuberMarket
+namespace SuperMarket
 {
 
     public class DataBaseFile
     {
-        public static string MyFiles = "C:\\Users\\hhhh\\source\\repos\\SuberMarket\\SuberMarket\\MyFiles\\";
+        public static string MyFiles = "C:\\C#\\SuperMarket\\SuberMarket\\MyFiles\\";
         public static void SetDataInFileEmployee(Market MyMarket)
         {
             string path = $"{MyFiles}Employees.txt";

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Console;
 
-namespace SuberMarket
+namespace SuperMarket
 {
     public class Product
     {
