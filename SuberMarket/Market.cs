@@ -25,14 +25,16 @@ namespace SuperMarket
             using (StreamWriter writer = new StreamWriter(path))
             {
 
-                for (int i = 0; i < 50; ++i)
+                for (int i = 0; i < MyMarket.IdxBranch; ++i)
                 {
                     if (MyMarket.Branches[i] == null) continue;
-                    for (int j = 0; j < 50; ++j)
+                    for (int j = 0; j < MyMarket.Branches[i].IdxEmp; ++j)
                     {
+
                         if (MyMarket.Branches[i].Employees[j] == null) continue;
 
                         writer.WriteLine($"{i},{MyMarket.Branches[i].Employees[j].GetData()}");
+
 
                     }
                 }
