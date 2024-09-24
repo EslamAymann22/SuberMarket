@@ -2,6 +2,11 @@
 # SuperMarket
 #### My first project with C# fundamentals and Some of the principles of OOP  
 
+## To run the program
+* After Clone , Run "SuperMarket.sln"
+* Copy all .txt files , Go to "SuperMarket \ bin \ Debug"
+* Paste files , Run the program from Visual Studio
+  
 ## Idea of project
 it's a super market has several branches ,<br>
 each branch has some of products and employees.<br><br>
