@@ -14,7 +14,8 @@ namespace SuperMarket
 
     public class DataBaseFile
     {
-        public static string MyFiles = "C:\\C#\\SuperMarket\\SuberMarket\\MyFiles\\";
+        //public static string MyFiles = "C:\\C#\\SuperMarket\\SuberMarket\\MyFiles\\";
+        public static string MyFiles = "";
         public static void SetDataInFileEmployee(Market MyMarket)
         {
             string path = $"{MyFiles}Employees.txt";
