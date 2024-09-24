@@ -49,11 +49,11 @@ namespace SuperMarket
             using (StreamWriter writer = new StreamWriter(path))
             {
 
-                for (int i = 0; i < 50; ++i)
+                for (int i = 0; i < MyMarket.IdxBranch; ++i)
                 {
        
                     if (MyMarket.Branches[i] == null) continue;
-                    for (int j = 0; j < 50; ++j)
+                    for (int j = 0; j < MyMarket.Branches[i].IdxProd; ++j)
                     {
                         if (MyMarket.Branches[i].Products[j] == null) continue;
 
@@ -145,10 +145,10 @@ namespace SuperMarket
     }
     public class Market
     {
-
+        public const int MxSz=50;
         public int IdxBranch = 0;
-        public Branch[] Branches=new Branch[50];
-        public string[] BraName = new string[50];
+        public Branch[] Branches=new Branch[MxSz];
+        public string[] BraName = new string[MxSz];
         public string Name;
         public Market(string Name) 
         {

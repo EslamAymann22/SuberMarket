@@ -9,11 +9,12 @@ namespace SuperMarket
 {
     public class Branch
     {
+        public const int MxSz= 50;
         public static int BranID = 1;
         public int ID;
         public string Name;
-        public Product[] Products=new Product[90];
-        public Employee[] Employees=new Employee[90];
+        public Product[] Products=new Product[MxSz];
+        public Employee[] Employees=new Employee[MxSz];
 
         public int IdxEmp = 0, IdxProd = 0;
         
@@ -71,9 +72,9 @@ namespace SuperMarket
         public Branch Clone()
         {
             Branch ret = (Branch)this.MemberwiseClone();
-            ret.Employees = new Employee[50];
-            ret.Products = new Product[50];
-            for(int i = 0; i < 50; ++i)
+            ret.Employees = new Employee[MxSz];
+            ret.Products = new Product[MxSz];
+            for(int i = 0; i < MxSz; ++i)
             {
                 if (this.Employees[i] != null)
                     ret.Employees[i] = this.Employees[i].Clone();
