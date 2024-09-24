@@ -312,7 +312,7 @@ namespace SuperMarket
                         case 3: AddProduct(); break;
                         case 4: ShowAllEmployees(); break;
                         case 5: ShowAllProducts(); break;
-                        case 6: SearchProdInBrach(); break;
+                        case 6:WriteLine(SearchProdInBrach());break;
                         case 7: ShowAllBranchData(); break;
                         case 8: return;
                     }
